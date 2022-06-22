@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ESRI Colors</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+	<style type="text/css">
+		#divColors div {
+			float: left;
+			border: 1px solid black;
+			width: 150px;
+			height: 100px;
+			line-height: 100px;
+			text-align: center;
+			margin: 20px;
+			font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+		}
+	</style>
+  </head>
+  <body>
+	<div id="divColors"></div>
+	<script type="text/javascript" >
+		$.getJSON('ESRI_Colors.json', function(data) {
+		   for(var i=0; i< data.length; i++) {
+
+			   var tag = document.createElement("div");
+			   var text = document.createTextNode(data[i].name);
+			   tag.appendChild(text);
+
+			   $(tag).css("background-color", "rgb(" + data[i].rgb[0] + ", " + data[i].rgb[1] + ", " + data[i].rgb[2] + ")");
+
+			   var element = document.getElementById("divColors");
+			   element.appendChild(tag);		   
+		   }
+	   });
+	</script>
+  </body>
+</html>
